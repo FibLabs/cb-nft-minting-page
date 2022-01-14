@@ -20,18 +20,18 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Add ENV
-      env:
-        REACT_APP_CANDY_MACHINE_ID: FxXSAPZv5GFBgrUVfM9jWCvB8J87dWDx8MB5ni3ATpMt
-        REACT_APP_SOLANA_NETWORK: devnet
-        REACT_APP_SOLANA_RPC_HOST: https://api.devnet.solana.com
-        
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
+      env:
+        REACT_APP_CANDY_MACHINE_ID: FxXSAPZv5GFBgrUVfM9jWCvB8J87dWDx8MB5ni3ATpMt
+        REACT_APP_SOLANA_NETWORK: devnet
+        REACT_APP_SOLANA_RPC_HOST: https://api.devnet.solana.com
+        
     - run: npm ci
     - run: npm run build
     - run: touch ./build/.nojekyll
